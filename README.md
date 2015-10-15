@@ -13,7 +13,6 @@ include phpfpm
 ```
 phpfpm::config {
   'global/error_log': value => '/var/log/php-fpm/error.log';
-  'global/daemonize': value => 'yes';
 }
 ```
 ```
@@ -24,6 +23,15 @@ phpfpm::modules { 'php-mbstring': ensure => 'latest' }
 phpfpm::modules { 'php-mcrypt': ensure => 'latest' }
 phpfpm::modules { 'php-mysql': ensure => 'latest' }
 phpfpm::modules { 'php-xml': ensure => 'latest' }
+```
+```
+phpfpm::pool {
+  'www/user':   value => 'deploy';
+  'www/group':  value => 'apache';
+}
+```
+```
+phpfpm::service { 'default': ensure => running, enable => true }
 ```
 
 License
