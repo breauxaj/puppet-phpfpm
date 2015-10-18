@@ -5,15 +5,18 @@ class phpfpm (
     /(?i-mx:centos|fedora|redhat|scientific)/ => [ 'php-fpm' ],
   }
 
-  $path = $::operatingsystem ? {
-    /(?i-mx:centos|fedora|redhat|scientific)/ => [ '/etc/php-fpm.d' ],
+  $paths = $::operatingsystem ? {
+    /(?i-mx:centos|fedora|redhat|scientific)/ => [
+      '/etc/php-fpm.d',
+      '/var/log/php-fpm'
+    ],
   }
 
   package { $required:
     ensure => $ensure
   }
 
-  file { $path:
+  file { $paths:
     ensure => directory,
     owner  => 'root',
     group  => 'root',
