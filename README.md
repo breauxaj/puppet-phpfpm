@@ -26,8 +26,8 @@ phpfpm::modules { 'php-xml': ensure => 'latest' }
 ```
 ```
 phpfpm::pool {
-  'www/user':   value => 'deploy';
-  'www/group':  value => 'apache';
+  'www/user':   value => 'nginx';
+  'www/group':  value => 'nginx';
 }
 ```
 ```
